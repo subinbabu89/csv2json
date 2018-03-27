@@ -5,6 +5,8 @@ import pandas as pd
 
 df = pd.read_excel('input.xls')
 df.fillna(value="", inplace=True)
+
+#columns to collate for the json array
 flavor = {"Ingredient name", "Type", "Milliliters", "Grams", "Drops*", "% of total"}
 
 sorted_column_index = 0
