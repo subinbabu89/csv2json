@@ -1,10 +1,13 @@
 import json
-
 import pandas as pd
+
+# Pre-requisites - xls file should be sorted by its first column. Else change the column number variable to specifi=y the sorted column
 
 df = pd.read_excel('input.xls')
 df.fillna(value="", inplace=True)
 flavor = {"Ingredient name", "Type", "Milliliters", "Grams", "Drops*", "% of total"}
+
+sorted_column_index = 0
 
 juice = {}
 params = {}
@@ -19,7 +22,7 @@ for index, row in df.iterrows():
         else:
             if "empty" == params.get(df.columns[i], "empty"):
                 params[df.columns[i]] = row[df.columns[i]]
-            elif params.get(df.columns[0]) != row[df.columns[0]]:
+            elif params.get(df.columns[sorted_column_index]) != row[df.columns[sorted_column_index]]:
                 juice_list = []
                 result.append(params)
                 params = {}
